@@ -73,6 +73,17 @@ void get_boot_time() {
     std::cout << std::endl;
 }
 
+void get_cpu_time() {
+    std::cout << "== /proc/stat/ cpu ==" << std::endl;
+    auto bTime = get_proc("/proc/stat", {"cpu"});
+    auto t = (time_t) std::stol(bTime.at(0).at(1)) / 100;
+
+    display_formatted_elapsed("User-mode: ", t);
+    t = (time_t) std::stol(bTime.at(0).at(3)) / 100 ;
+    display_formatted_elapsed("System-mode: ", t);
+    std::cout << std::endl;
+}
+
 void get_uptime() {
     std::cout << "== /proc/uptime ==" << std::endl;
     auto uptimeVec = get_proc("/proc/uptime", {});
@@ -102,6 +113,7 @@ int main() {
     std::cout << uts << std::endl;
     get_boot_time();
     get_uptime();
+    get_cpu_time();
     get_mem_info();
     return 0;
 }
