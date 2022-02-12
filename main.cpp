@@ -136,7 +136,7 @@ void get_mem_info() {
     auto total = memInfo.at(0).at(1);
     std::cout << "MemTotal     : " << total << " kB" << std::endl;
     auto avail = memInfo.at(1).at(1);
-    std::cout << "MemAvailable : " << total << " kB";
+    std::cout << "MemAvailable : " << total << " kB" << std::endl;
 }
 
 // Main func
